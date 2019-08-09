@@ -3,6 +3,7 @@ package com.value.security;
 import com.value.entities.User;
 import com.value.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,13 +26,26 @@ public class SecurityUserDetails implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // 通过用户名获取用户信息
+        // 获取用户信息
         User user = userService.getUserByName(username);
 
+        // 获取角色信息
+        List<String> roleList = new ArrayList<>();
+
+        // 权限列表
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
-        // 获取用户权限
+        // 赋予查询到的角色
+        for (String role :
+                roleList) {
+            SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
+            authorities.add(authority);
+        }
 
-        return null;
+        // 创建UserDetails对象，设置用户名、密码和权限
+        UserDetails userDetails = new org.springframework.security.core.userdetails.User(user.getUsername(),
+                user.getPassword(), authorities);
+
+        return userDetails;
     }
 }
