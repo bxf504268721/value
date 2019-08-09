@@ -31,6 +31,8 @@ public class SecurityUserDetails implements UserDetailsService {
 
         // 获取角色信息
         List<String> roleList = new ArrayList<>();
+        roleList.add("admin");
+        roleList.add("visitor");
 
         // 权限列表
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
