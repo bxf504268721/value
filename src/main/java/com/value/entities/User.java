@@ -8,16 +8,22 @@ public class User {
     /** 用户id*/
     private Long userId;
 
+    /** 用户名*/
     private String username;
 
+    /** 密码*/
     private String password;
 
+    /** 昵称*/
     private String nickname;
 
+    /** 用户级别*/
     private String level;
 
+    /** 备注*/
     private String note;
 
+    /** 是否删除（1.是；0.否）*/
     private String sign;
 
     public Long getUserId() {

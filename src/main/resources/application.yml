@@ -1,5 +1,6 @@
 server:
   port: 9999
+#  thymeleaf
 spring:
   thymeleaf:
     encoding: UTF-8
@@ -7,3 +8,18 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
     cache: false
+#
+  mvc:
+    static-path-pattern:/**
+#  mysql
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ENC(31j5UIsWLrUGfEcje+l1dHl367shbysDtYgyOcxmvsnfJCuqOuIFVDf2yQ0ERTjI)
+    username: ENC(hyOS4qF0VQca/jorP6kneA==)
+    password: ENC(sdsvEGnIega+SsiMLttZeb1JZF+sRb8d)
+# mybatis
+mybatis:
+  mapper-locations: mappers/*.xml
+  type-aliases-package: com.value.entities
+
+
