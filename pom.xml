@@ -57,12 +57,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!-- fastjson json-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>RELEASE</version>
-        </dependency>
+        
         <!-- junit test-->
         <dependency>
             <groupId>junit</groupId>
