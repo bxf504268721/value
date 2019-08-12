@@ -1,4 +1,4 @@
-package com.value.controller;
+package com.value.controller.api;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
