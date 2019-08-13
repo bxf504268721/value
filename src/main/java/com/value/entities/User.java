@@ -1,10 +1,16 @@
 package com.value.entities;
+
+import java.io.Serializable;
+
 /**
 * @Description 用户信息
 * @Author bxf
 * @Date   2019/8/8
 */
-public class User {
+public class User implements Serializable {
+    /** 序列化*/
+    private static final long serialVersionUID = 5977029483868734224L;
+
     /** 用户id*/
     private Long userId;
 

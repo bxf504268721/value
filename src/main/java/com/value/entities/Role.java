@@ -1,10 +1,18 @@
 package com.value.entities;
+
+import com.value.mode.BasicModel;
+
+import java.io.Serializable;
+
 /**
 * @Description 角色信息表
 * @Author bxf
 * @Date   2019/8/11
 */
-public class Role {
+public class Role implements Serializable{
+    /** 序列化*/
+    private static final long serialVersionUID = 9195122319061324500L;
+
     /** 角色id*/
     private Long roleId;
 
