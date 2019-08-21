@@ -54,5 +54,5 @@ mybatis:
 # jasypt加密的密匙
 jasypt:
   encryptor:
-    password: 
+    password:
 

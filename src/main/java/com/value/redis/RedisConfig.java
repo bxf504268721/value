@@ -11,6 +11,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.net.UnknownHostException;
 
@@ -22,6 +24,15 @@ import java.net.UnknownHostException;
 @Configuration
 @EnableCaching
 public class RedisConfig {
+    /**\
+     * RedisTemplate 配置
+     * @ConditionalOnMissingBean注解：
+     * 在容器加载它作用的bean时，检查容器中是否存在目标类型（ConditionalOnMissingBean注解的value值）的bean了，
+     * 如果存在这跳过原始bean的BeanDefinition加载动作
+     * @param redisConnectionFactory
+     * @return
+     * @throws UnknownHostException
+     */
     @Bean
     @ConditionalOnMissingBean(name = "redisTemplate")
     public RedisTemplate<String, Object> redisTemplate(
@@ -34,6 +45,9 @@ public class RedisConfig {
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
 
+        // String数据结构
+        // RedisSerializer<String> stringSerializer = new StringRedisSerializer();
+
         RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
         template.setConnectionFactory(redisConnectionFactory);
         template.setKeySerializer(jackson2JsonRedisSerializer);
@@ -44,8 +58,14 @@ public class RedisConfig {
         return template;
     }
 
+    /**
+     * stringRedisTemplate 操作string类型
+     * @param redisConnectionFactory
+     * @return
+     * @throws UnknownHostException
+     */
     @Bean
-    @ConditionalOnMissingBean(StringRedisTemplate.class)
+    @ConditionalOnMissingBean(name = "stringRedisTemplate")
     public StringRedisTemplate stringRedisTemplate(
             RedisConnectionFactory redisConnectionFactory)
             throws UnknownHostException {
